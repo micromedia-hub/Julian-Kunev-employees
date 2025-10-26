@@ -13,11 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees.Infrastructure", 
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Employees.Ui", "Employees.Ui\Employees.Ui.esproj", "{AD8649BE-5BEA-F5EE-B520-D9F92D324655}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleData", "SampleData", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Users\Julian\Desktop\sample.csv = ..\..\..\Users\Julian\Desktop\sample.csv
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

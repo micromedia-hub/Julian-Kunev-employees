@@ -1,0 +1,81 @@
+<div class="panel">
+  <div class="toolbar">
+    <label class="file">
+      <input type="file" accept=".csv" (change)="onFileChange($event)" />
+      <span>{{ file?.name || 'Choose CSV file...' }}</span>
+    </label>
+
+    <div class="spacer"></div>
+
+    <button class="btn btn-secondary" (click)="onParse()" [disabled]="loading">Parse</button>
+    <button class="btn btn-primary" (click)="onAnalyze()" [disabled]="loading">Analyze</button>
+  </div>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <div *ngIf="analyzeResult" class="summary">
+    <div class="summary-line">
+      <strong>Top Pair:</strong>
+      <span>{{ analyzeResult.employeeId1 }}</span> &nbsp;|&nbsp;
+      <span>{{ analyzeResult.employeeId2 }}</span>
+    </div>
+    <div class="summary-line">
+      <strong>Total days together:</strong>
+      <span class="badge">{{ analyzeResult.totalDaysWorkedTogether }}</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- Echo table (after Parse) -->
+    <table *ngIf="echo.length" class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>EmployeeID</th>
+          <th>ProjectID</th>
+          <th>DateFrom</th>
+          <th>DateTo</th>
+          <th>Valid</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of echo; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.employeeId ?? '' }}</td>
+          <td>{{ row.projectId ?? '' }}</td>
+          <td>{{ row.dateFromRaw }}</td>
+          <td>{{ row.dateToRaw }}</td>
+          <td>{{ row.isValid }}</td>
+          <td>{{ row.error }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Analyze details table (bonus) -->
+    <table *ngIf="analyzeResult?.details?.length" class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Employee ID #1</th>
+          <th>Employee ID #2</th>
+          <th>Project ID</th>
+          <th>Days worked</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of analyzeResult!.details; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ d.employeeId1 }}</td>
+          <td>{{ d.employeeId2 }}</td>
+          <td>{{ d.projectId }}</td>
+          <td>{{ d.daysWorkedTogether }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!echo.length && !(analyzeResult?.details?.length)">
+      <p class="hint">Upload a CSV, click <strong>Parse</strong>, then <strong>Analyze</strong>.</p>
+    </div>
+  </div>
+</div>

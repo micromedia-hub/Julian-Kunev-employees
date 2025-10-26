@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+}
+
+.app-header {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
+
+{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .3px;
+}
+
+}
+
+.app-main {
+  min-height: 0;
+}
+
+.app-footer {
+  padding: 8px 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+}
